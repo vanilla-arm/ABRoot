@@ -25,7 +25,7 @@ jobs:
       run: |
           dpkg --add-architecture arm64
           apt-get update
-          apt-get install -y libbtrfs-dev libdevmapper-dev libgpgme-dev libdpkg-dev gcc pkgconf libdevmapper-dev:arm64 libdpkg-dev:arm64 gcc-aarch64-linux-gnu
+          apt-get install -y libbtrfs-dev libdevmapper-dev libgpgme-dev libdpkg-dev gcc patch pkgconf libdevmapper-dev:arm64 libdpkg-dev:arm64 gcc-aarch64-linux-gnu
 
     - name: Run Tests
       run: go test -v ./tests/...
