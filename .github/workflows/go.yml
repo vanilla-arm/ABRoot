@@ -3,15 +3,17 @@ name: Go
 on:
   push:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "test" ]
 
 jobs:
 
   build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     container:
-      image: ghcr.io/vanilla-os/pico:main
+      image: ghcr.io/vanilla-arm/pico:dev
 
     steps:
     - uses: actions/checkout@v5
@@ -56,9 +58,7 @@ jobs:
           checksums.txt
 
     - uses: softprops/action-gh-release@v2
-      if: github.repository == 'vanilla-os/ABRoot' && github.ref == 'refs/heads/main'
       with:
-        token: "${{ secrets.GITHUB_TOKEN }}"
         tag_name: "continuous"
         prerelease: true
         name: "Continuous Build"
